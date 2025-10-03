@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// added a random comment for classroom activity ~Tuomas
 public class CharacterMovement : MonoBehaviour
 {
     public float speed = 5f; //movement speed.
