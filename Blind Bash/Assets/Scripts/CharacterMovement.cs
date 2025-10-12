@@ -10,13 +10,15 @@ public class CharacterMovement : MonoBehaviour
 
     private Rigidbody2D rb; //rigidbody reference
     private SpriteRenderer sprite; //sprite renderer ref.
+    private PlayerStats stats; //player stats script ref.
     private Vector2 moveDirection = Vector2.zero; //current movement direction
     private bool canMove = true; //true = waiting for input, false = moving.
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponentInChildren<SpriteRenderer>(); //from children to allow free rotation of sprite.
+        stats = GetComponent<PlayerStats>(); //init. stats for further use in collisions and such,
     }
 
     void Update()
@@ -33,7 +35,6 @@ public class CharacterMovement : MonoBehaviour
                 SetMoveDirection(Vector2.right);
         }
     }
-
     void FixedUpdate()
     {
         // Apply velocity if currently moving
@@ -45,43 +46,41 @@ public class CharacterMovement : MonoBehaviour
             }
             rb.velocity = moveDirection * speed;
         }
-        /*
-        else
-        {
-            rb.velocity = Vector2.zero; //stay still until next input.
-        }
-        */
-       
     }
     private void SetMoveDirection(Vector2 dir) //sets the movement direction and disables input until a wall is hit.
     {
         moveDirection = dir;
         canMove = false; //start moving until hit a wall
 
-        //flip sprite (maybe this'll be finished if it is necessary. Currently just flips image from left to right). UNDRED CONSTRUCTION.
-        if (dir == Vector2.up)
-            sprite.transform.localScale = new Vector3(1, 1, 1);
-        else if (dir == Vector2.down)
-            transform.localScale = new Vector3(1, -1, 1);
-        else if (dir == Vector2.left)
-            sprite.transform.Rotate(0, 0, -90);
-        else if (dir == Vector2.right)
-            sprite.transform.Rotate(0, 0, -90);
-            
-            
-    }
-    private void OnCollisionEnter2D(Collision2D collision) //called when colliding with a wall. Stops movement ONLY if the wall is blocking the current direction.
-    {
-        speed=0;
+        stats.UseMove(); //call UseMove -method in PlayerStats to update movement count status.
 
+        float angle = 0f; //angle to rotate the sprite to flip its facing according to the given mov. dir.
+        if (dir == Vector2.up) angle = 0f; //by default the dog is facing up. (for now at least).
+        else if (dir == Vector2.right) angle = -90f;
+        else if (dir == Vector2.down) angle = 180f;
+        else if (dir == Vector2.left) angle = 90f;
+
+        sprite.transform.localRotation = Quaternion.Euler(0, 0, angle); //rotate the sprite
+    }
+    private void OnCollisionEnter2D(Collision2D collision) //collision handling.
+    {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             Vector2 collisionNormal = collision.contacts[0].normal;
 
             if (Vector2.Dot(moveDirection, -collisionNormal) > 0.5f)
             {
-                StopMovement(); //if our moveDirection points into the wall, stop
+                StopMovement(); //if moveDirection points into the wall, stop
             }
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("DamageSource"))
+        {
+            stats.TakeDamage(1); //take damage when colliding with damage source tagged stuff
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Collectible"))
+        {
+            stats.AddScore(10); //increment score on collectible collision
+            Destroy(collision.gameObject); //destroy collectible.
         }
     }
     private void OnCollisionStay2D(Collision2D collision) //extra safety check in case of continuous collision (like sliding along walls).
@@ -98,6 +97,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void StopMovement() //stops the rigidbody and re-enables input.
     {
+        speed=0; //set speed to 0 on collision for new acceleration.
         rb.velocity = Vector2.zero;
         moveDirection = Vector2.zero;
         canMove = true; //input enabled again.
