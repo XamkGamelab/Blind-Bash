@@ -7,7 +7,7 @@ public class Buttons : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Even Scene");
+        SceneManager.LoadScene("LevelSelector");
     }
     public void QuiteGame()
     {
