@@ -11,7 +11,7 @@ public class LevelBrowser : MonoBehaviour
 
     public GameObject buttonParent;
 
-    public int totalLevels = 2;
+    public int totalLevels = 10;
 
 
     private void OnEnable()
