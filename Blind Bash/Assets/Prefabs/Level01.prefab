@@ -4502,7 +4502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7082723896975865674}
   - component: {fileID: 6503428686588655148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
