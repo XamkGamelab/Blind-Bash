@@ -508,7 +508,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.302
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -604,7 +604,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.302
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -704,7 +704,13 @@ MonoBehaviour:
   sfxSource: {fileID: 876925789}
   menuMusic: {fileID: 8300000, guid: cb993337f44f026478c15c872519a55b, type: 3}
   levelMusic: {fileID: 8300000, guid: b3a472833af9fcb46bad133e8d2b890e, type: 3}
-  sfxClips: []
+  sfxClips:
+  - id: bark
+    clip: {fileID: 8300000, guid: 9d936229f34bbdc47a4c6828019d7355, type: 3}
+    volume: 1
+  - id: toy
+    clip: {fileID: 8300000, guid: e2dd674381c02a8418cf792270a328ea, type: 3}
+    volume: 1
 --- !u!4 &876925792
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +811,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1350203722}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

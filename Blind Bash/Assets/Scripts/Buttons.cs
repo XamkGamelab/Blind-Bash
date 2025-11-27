@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public void OnButtonPressed()
+    {
+        AudioManager.Instance.PlaySFX("bark");
+        Invoke(nameof(StartGame), 0.15f);
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("LevelSelector");
