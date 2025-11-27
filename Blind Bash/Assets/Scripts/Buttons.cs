@@ -11,6 +11,8 @@ public class Buttons : MonoBehaviour
         Invoke(nameof(StartGame), 0.15f);
     }
 
+    public PauseManager PauseManager;
+    public GameObject pauseCanvas;
     public void StartGame()
     {
         SceneManager.LoadScene("LevelSelector");
@@ -19,5 +21,11 @@ public class Buttons : MonoBehaviour
     {
         Debug.Log("Game has been closed");
         Application.Quit();
+    }
+    public void Resume()
+    {
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        PauseManager.isPaused = false;
     }
 }
