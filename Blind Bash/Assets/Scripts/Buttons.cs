@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public PauseManager PauseManager;
+    public GameObject pauseCanvas;
     public void StartGame()
     {
         SceneManager.LoadScene("LevelSelector");
@@ -13,5 +15,11 @@ public class Buttons : MonoBehaviour
     {
         Debug.Log("Game has been closed");
         Application.Quit();
+    }
+    public void Resume()
+    {
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        PauseManager.isPaused = false;
     }
 }
