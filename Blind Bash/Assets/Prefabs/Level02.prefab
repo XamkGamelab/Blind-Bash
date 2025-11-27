@@ -4709,6 +4709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4917715684852060675}
+  - component: {fileID: 8445180910296437092}
   m_Layer: 0
   m_Name: Level02
   m_TagString: Untagged
@@ -4737,6 +4738,20 @@ Transform:
   - {fileID: 2979016389404990600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8445180910296437092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694411886409470444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95be3a67051f13a499639600b2d5190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionTilemap: {fileID: 3861694939851027938}
+  spawnPoint: {fileID: 2979016389404990600}
 --- !u!1 &8664185928734068475
 GameObject:
   m_ObjectHideFlags: 0

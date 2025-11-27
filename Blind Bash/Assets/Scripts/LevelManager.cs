@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("References")]
     public Transform levelParent;
-    public Transform player;
+    public CharacterMovement player;
 
     private GameObject currentLevel;
 
@@ -48,55 +48,22 @@ public class LevelManager : MonoBehaviour
         //Instantiate new level
         currentLevel = Instantiate(levelPrefabs[index], levelParent);
 
-        //Place player after level has been loaded
-        StartCoroutine(PlacePlayerAtSpawnNextFrame());
-
-    }
-
-    IEnumerator PlacePlayerAtSpawnNextFrame()
-    {
-        //Wait for other start/awake to be finsihed
-        yield return null;
-
-        if (player == null)
+        //Get config on the instantiated level
+        LevelConfig config = currentLevel.GetComponent<LevelConfig>();
+        if (config == null)
         {
-            Debug.LogWarning("Player reference not set on LevelManager");
-            yield break;
+            Debug.LogError("Level prefab is missing LevelConfig!");
+            return;
         }
 
-        //Find spawn by tag
-        Transform spawn = null;
-        foreach (var t in currentLevel.GetComponentsInChildren<Transform>(true))
-        {
-            if (t.CompareTag("SpawnPoint"))
-            {
-                spawn = t;
-                break;
-            }
-        }
+        //Place player at spawn
+        player.transform.position = config.spawnPoint.position;
+        player.transform.rotation = config.spawnPoint.rotation;
 
-        if (spawn == null)
-        {
-            foreach (var t in currentLevel.GetComponentsInChildren<Transform>(true))
-            {
-                if (t.name == "SpawnPoint")
-                {
-                    spawn = t;
-                    break;
-                }
-            }
-        }
+        //Tell player which tilemap to use for snapping
+        player.SetLevelTilemap(config.collisionTilemap);
 
-        if (spawn == null)
-        {
-            Debug.LogWarning("No spawn found");
-            yield break;
-        }
+        Debug.Log("Player placed at" + config.spawnPoint.position);
 
-        //Place player
-        player.position = spawn.position;
-        player.rotation = spawn.rotation;
-
-        Debug.Log("Player placed at " + spawn.position);
     }
 }

@@ -16654,6 +16654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4177006804793082456}
+  - component: {fileID: 8780654249201808135}
   m_Layer: 0
   m_Name: Level07
   m_TagString: Untagged
@@ -16682,6 +16683,20 @@ Transform:
   - {fileID: 289487192002726406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8780654249201808135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019041131903968327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95be3a67051f13a499639600b2d5190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionTilemap: {fileID: 350886131223134854}
+  spawnPoint: {fileID: 6957408119258206377}
 --- !u!1001 &1783940140367131492
 PrefabInstance:
   m_ObjectHideFlags: 0
