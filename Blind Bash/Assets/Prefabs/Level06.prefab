@@ -7752,7 +7752,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 3892576600681322836}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bb789a87126373a4791d454a90667755, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8204,11 +8204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8358378584767169426, guid: 3fb7d0f65939f2342b5bf829a5ae6495, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.265869
+      value: 5.31
       objectReference: {fileID: 0}
     - target: {fileID: 8358378584767169426, guid: 3fb7d0f65939f2342b5bf829a5ae6495, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.645271
+      value: -21.82
       objectReference: {fileID: 0}
     - target: {fileID: 8358378584767169426, guid: 3fb7d0f65939f2342b5bf829a5ae6495, type: 3}
       propertyPath: m_LocalPosition.z
