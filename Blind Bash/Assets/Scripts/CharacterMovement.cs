@@ -128,6 +128,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
+            AudioManager.Instance.PlaySFX("toy");
             stats.AddScore(10); //increment score on collectible collision
             Destroy(collision.gameObject); //destroy collectible.
         }

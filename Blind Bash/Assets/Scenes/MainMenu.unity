@@ -704,6 +704,9 @@ MonoBehaviour:
   sfxSource: {fileID: 876925789}
   menuMusic: {fileID: 8300000, guid: cb993337f44f026478c15c872519a55b, type: 3}
   levelMusic: {fileID: 8300000, guid: b3a472833af9fcb46bad133e8d2b890e, type: 3}
+  masterVolume: 1
+  musicVolume: 1
+  sfxVolume: 1
   sfxClips:
   - id: bark
     clip: {fileID: 8300000, guid: 9d936229f34bbdc47a4c6828019d7355, type: 3}
@@ -1033,7 +1036,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 960412387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1350203722}
+        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+        m_MethodName: OptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &960412387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,6 +1408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddb5a0bb54439e4a9987850bc09afa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseManager: {fileID: 0}
+  pauseCanvas: {fileID: 0}
 --- !u!1 &1727846639
 GameObject:
   m_ObjectHideFlags: 0

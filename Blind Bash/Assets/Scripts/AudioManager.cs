@@ -16,6 +16,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip levelMusic;
 
+    [Header("Volume (0-1")]
+    [Range(0f, 1f)] public float masterVolume = 1f;
+    [Range(0f, 1f)] public float musicVolume = 1f;
+    [Range(0f, 1f)] public float sfxVolume = 1f;
+
+    private const string MASTER_KEY = "Volume_Master";
+    private const string MUSIC_KEY = "Volume_Music";
+    private const string SFX_KEY = "Volume_SFX";
+
     //[Header("SFX Clips")]
     [Serializable]
 
@@ -42,6 +51,8 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         BuildSfxDictionary();
+        LoadVolumes();
+        ApplyVolumes();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -61,7 +72,6 @@ public class AudioManager : MonoBehaviour
                 sfxDict[s.id] = s;
             }
         }
-
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -74,7 +84,7 @@ public class AudioManager : MonoBehaviour
         AudioClip targetClip = null;
 
         //Same music for MainMenu and OptionsMenu
-        if (sceneName == "MainMenu" || sceneName == "OptionsScene")
+        if (sceneName == "MainMenu" || sceneName == "Options")
         {
             targetClip = menuMusic;
         }
@@ -98,6 +108,72 @@ public class AudioManager : MonoBehaviour
         musicSource.loop = true;
         musicSource.Play();
     }
+
+    //Volume
+    private void LoadVolumes()
+    {
+        if (PlayerPrefs.HasKey(MASTER_KEY))
+        {
+            masterVolume = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
+        }
+
+        if (PlayerPrefs.HasKey(MUSIC_KEY))
+        {
+            musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
+        }
+
+        if (PlayerPrefs.HasKey(SFX_KEY))
+        {
+            sfxVolume = PlayerPrefs.GetFloat(SFX_KEY, 1f);
+        }
+    }
+
+    private void SaveVolumes()
+    {
+        PlayerPrefs.SetFloat(MASTER_KEY, masterVolume);
+        PlayerPrefs.SetFloat(MUSIC_KEY, musicVolume);
+        PlayerPrefs.SetFloat(SFX_KEY, sfxVolume);
+        PlayerPrefs.Save();
+    }
+
+    private void ApplyVolumes()
+    {
+        if (musicSource != null)
+        {
+            musicSource.volume = masterVolume * musicVolume;
+        }
+
+        if (sfxSource != null)
+        {
+            sfxSource.volume = masterVolume * sfxVolume;
+        }
+    }
+
+    //UI sliders
+    public void SetMasterVolume(float value)
+    {
+        masterVolume = Mathf.Clamp01(value);
+        ApplyVolumes();
+        SaveVolumes();
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        musicVolume = Mathf.Clamp01(value);
+        ApplyVolumes();
+        SaveVolumes();
+    }
+
+    public void SetSfxVolume(float value)
+    {
+        sfxVolume = Mathf.Clamp01(value);
+        ApplyVolumes();
+        SaveVolumes();
+    }
+
+    public float GetMasterVolume() => masterVolume;
+    public float GetMusicVolume() => musicVolume;
+    public float GetSfxVolume() => sfxVolume;
 
     //Dictionary for sound effects
     public void PlaySFX(string id)
