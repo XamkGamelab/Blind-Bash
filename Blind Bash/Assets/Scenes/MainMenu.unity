@@ -714,6 +714,9 @@ MonoBehaviour:
   - id: toy
     clip: {fileID: 8300000, guid: e2dd674381c02a8418cf792270a328ea, type: 3}
     volume: 1
+  - id: yelp
+    clip: {fileID: 8300000, guid: 96457e2be1126cc40a7cf4d8220b4aec, type: 3}
+    volume: 1
 --- !u!4 &876925792
 Transform:
   m_ObjectHideFlags: 0

@@ -124,6 +124,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("DamageSource"))
         {
+            AudioManager.Instance.PlaySFX("yelp");
             stats.TakeDamage(1); //take damage when colliding with damage source tagged stuff
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Collectible"))

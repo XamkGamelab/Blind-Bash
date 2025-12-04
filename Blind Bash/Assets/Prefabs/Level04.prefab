@@ -2068,7 +2068,7 @@ GameObject:
   - component: {fileID: 1175010740590532710}
   - component: {fileID: 2234495299017355158}
   - component: {fileID: 5272694549330917690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap04_Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
