@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class PlayerHUD : MonoBehaviour
 {
-    [Header("TMP References")]
-    public TextMeshProUGUI hpText;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI movesText;
+    [Header("References")]
+    public Text hpText;
+    public Text scoreText;
 
     private PlayerStats playerStats;
 
@@ -24,6 +24,5 @@ public class PlayerHUD : MonoBehaviour
 
         hpText.text = $"HP: {playerStats.hitPoints}";
         scoreText.text = $"Score: {playerStats.score}";
-        movesText.text = $"Moves: {playerStats.moveCount}";
     }
 }
