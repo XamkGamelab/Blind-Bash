@@ -22,14 +22,36 @@ public class LevelBrowser : MonoBehaviour
             Destroy(buttonParent.transform.GetChild(j).gameObject);
         }
 
+        int highestUnlocked = 0;
+        if (GameManager.Instance != null)
+        {
+            highestUnlocked = GameManager.Instance.HighestUnlockedLevelIndex;
+        }
 
         for (int i = 0; i < totalLevels; i++)
         {
             GameObject newButton = Instantiate(buttonPrefab, buttonParent.transform);
             int index = i;
             int levelLabel = i + 1;
-            newButton.GetComponent<LevelButton>().levelText.text = levelLabel.ToString();
-            newButton.GetComponent<Button>().onClick.AddListener(() => SelectLevel(index));
+
+            LevelButton levelButton = newButton.GetComponent<LevelButton>();
+            Button uiButton = newButton.GetComponent<Button>();
+
+            //Set label text
+            levelButton.levelText.text = levelLabel.ToString();
+
+            //Determine if this level is unlocked
+            bool isUnlocked = (i <= highestUnlocked);
+
+            //Make locked button non-clickable
+            uiButton.interactable = isUnlocked;
+
+            //Update visuals
+            levelButton.SetLocked(!isUnlocked);
+
+            //Click listener
+            uiButton.onClick.AddListener(() => SelectLevel(index));
+
         }
     }
 

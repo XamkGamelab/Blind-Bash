@@ -11,6 +11,12 @@ public class PlayerStats : MonoBehaviour
     private GameObject ballParent;
     public int ballAmount;
 
+    private bool canProceed = false;
+
+    private int totalLevels = 10;
+
+    public 
+
     void Start()
     {
         StartCoroutine(WaitForBalls()); //this for the reason that the game won't find the "Balls" g.object instantly after instantiation.
@@ -37,9 +43,16 @@ public class PlayerStats : MonoBehaviour
             if (ballAmount == 0)
             {
                 //Level progerssion logic goes HERE. Remember to reset score and HP.
+                canProceed = true;
 
                 Debug.Log("All balls collected.");
             }
+        }
+
+        //All balls have been collected so the next level can be unlocked
+        if (canProceed)
+        {
+            ProceedLevel();
         }
     }
 
@@ -59,5 +72,13 @@ public class PlayerStats : MonoBehaviour
             //reset stats on death. Here also logic to show "LOSE" view.
 
         }
+    }
+
+    public void ProceedLevel()
+    {
+        int currentLevel = GameManager.Instance.SelectedLevelIndex;
+        GameManager.Instance.UnlockNextLevel(currentLevel, totalLevels);
+
+        Debug.Log("Level index " + (currentLevel + 1) + " opened");
     }
 }
