@@ -16,7 +16,8 @@ public class Buttons : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("LevelSelector");
+        Time.timeScale = 1f; //this here because this method is also used to go back to the levelselection after victory.
+        SceneManager.LoadScene("LevelSelector"); //also for when player completes a level or leaves the current level.
     }
 
     public void QuiteGame()
@@ -32,6 +33,16 @@ public class Buttons : MonoBehaviour
         PauseManager.isPaused = false;
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+
+        FindObjectOfType<PlayerStats>().ResetStats(); //reset stats.
+
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(current.name);
+    }
+
     public void OptionsMenu()
     {
         SceneManager.LoadScene("Options");
@@ -41,4 +52,6 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+
 }

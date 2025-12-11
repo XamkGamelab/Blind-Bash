@@ -17,7 +17,6 @@ public class CharacterMovement : MonoBehaviour
     private PlayerStats stats; //player stats script ref.
     private Animator animator; //animator ref.
     private Rigidbody2D rb; //rigidbody2D ref.
-
     private Tilemap levelTilemap; //tilemap ref.
 
 
@@ -30,7 +29,7 @@ public class CharacterMovement : MonoBehaviour
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-        stats = GetComponent<PlayerStats>(); 
+        stats = GetComponent<PlayerStats>();
     }
 
     public void SetLevelTilemap(Tilemap tilemap)
@@ -132,6 +131,10 @@ public class CharacterMovement : MonoBehaviour
             AudioManager.Instance.PlaySFX("toy");
             stats.AddScore(10); //increment score on collectible collision
             Destroy(collision.gameObject); //destroy collectible.
+        }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Gate") && stats.canProceed)
+        {
+            LevelUIManager.Instance.ShowWin(); //to trigger win -canvas.
         }
     }
 

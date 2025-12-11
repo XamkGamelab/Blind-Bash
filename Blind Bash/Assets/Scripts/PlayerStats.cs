@@ -9,9 +9,12 @@ public class PlayerStats : MonoBehaviour
     public int score = 0;
 
     private GameObject ballParent;
+    private SpriteRenderer gateSpriteRenderer; //this simply for switching the sprites.
+    public Sprite gateOpen;
+
     public int ballAmount;
 
-    private bool canProceed = false;
+    public bool canProceed = false;
 
     private int totalLevels = 10;
 
@@ -19,10 +22,10 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForBalls()); //this for the reason that the game won't find the "Balls" g.object instantly after instantiation.
+        StartCoroutine(WaitForParents()); //this for the reason that the game will find the gate and the balls.
     }
 
-    IEnumerator WaitForBalls()
+    IEnumerator WaitForParents()
     {
         while (ballParent == null)
         {
@@ -32,6 +35,12 @@ public class PlayerStats : MonoBehaviour
 
         ballAmount = ballParent.transform.childCount;
         Debug.Log("found ball count = " + ballAmount);
+
+        while(gateSpriteRenderer == null)
+        {
+            gateSpriteRenderer = FindObjectOfType<SpriteRenderer>();
+            yield return null;
+        }
     }
 
     void Update()
@@ -67,15 +76,23 @@ public class PlayerStats : MonoBehaviour
         hitPoints -= amount; //decrement HP.
         if (hitPoints <= 0)
         {
-            hitPoints = 3;
-            score = 0;
-            //reset stats on death. Here also logic to show "LOSE" view.
+            LevelUIManager.Instance.ShowLose(); //to show lose -canvas.
 
         }
     }
 
+    public void ResetStats()
+    {
+        hitPoints = 3;
+        score = 0;
+    }
+
     public void ProceedLevel()
     {
+        if (gateSpriteRenderer != null) 
+        {
+            gateSpriteRenderer.sprite = gateOpen;
+        }
         int currentLevel = GameManager.Instance.SelectedLevelIndex;
         GameManager.Instance.UnlockNextLevel(currentLevel, totalLevels);
 
