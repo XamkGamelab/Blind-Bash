@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int SelectedLevelIndex { get; private set; }
 
+    public int totalLevels = 10;
+
     public void Awake()
     {
         if (Instance == null)
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     //Call UnlockNextLevel when a level is completed to unlock the next one
     //completedIndex is the index of the level that was just finished
-    public void UnlockNextLevel(int completedIndex, int totalLevels)
+    public void UnlockNextLevel(int completedIndex)
     {
         int nextIndex = completedIndex + 1;
 

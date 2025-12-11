@@ -8,6 +8,9 @@ public class Buttons : MonoBehaviour
     public PauseManager PauseManager;
     public GameObject pauseCanvas;
 
+    public GameObject tutorialPanel;
+    public GameObject creditsPanel;
+
     public void OnButtonPressed()
     {
         AudioManager.Instance.PlaySFX("bark");
@@ -53,5 +56,23 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void OpenTutorial()
+    {
+        tutorialPanel.SetActive(true);
+    }
 
+    public void CloseTutorial()
+    {
+        tutorialPanel.SetActive(false);
+    }
+
+    public void OpenCredits()
+    {
+        creditsPanel.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(false);
+    }
 }

@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool canProceed = false;
 
-    private int totalLevels = 10;
+    //private int totalLevels = 10;
 
     public 
 
@@ -94,7 +94,7 @@ public class PlayerStats : MonoBehaviour
             gateSpriteRenderer.sprite = gateOpen;
         }
         int currentLevel = GameManager.Instance.SelectedLevelIndex;
-        GameManager.Instance.UnlockNextLevel(currentLevel, totalLevels);
+        GameManager.Instance.UnlockNextLevel(currentLevel);
 
         Debug.Log("Level index " + (currentLevel + 1) + " opened");
     }

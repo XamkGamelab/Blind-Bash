@@ -11,11 +11,12 @@ public class LevelBrowser : MonoBehaviour
 
     public GameObject buttonParent;
 
-    public int totalLevels = 10;
+    public int totalLevels;
 
 
     private void OnEnable()
     {
+        totalLevels = GameManager.Instance.totalLevels;
         //Clear old buttons
         for (int j = buttonParent.transform.childCount - 1; j >= 0; j--)
         {
