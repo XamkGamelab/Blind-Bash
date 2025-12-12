@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 216410611}
   - component: {fileID: 216410610}
   m_Layer: 5
-  m_Name: CreditsText (TMP) (1)
+  m_Name: CreditsTextAudio (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "James Gargette - Main menu\nPrzemys\u0142aw Sikorski - Gameplay\nDRAGON-STUDIO
-    - Dog bark\nScreamStudio - Dog toy\nqubodup - Dog whine\n"
+    - Dog bark\nScreamStudio - Dog toy\nqubodup - Dog whine\nschademans - Bush rustle\nMATUSTRM
+    - Win sound\nfloraphonic - Lose sound"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd393cc93dadfe44e9df413fa7b51419, type: 2}
   m_sharedMaterial: {fileID: 6290573585759991981, guid: cd393cc93dadfe44e9df413fa7b51419, type: 2}
@@ -1388,6 +1389,15 @@ MonoBehaviour:
     volume: 1
   - id: yelp
     clip: {fileID: 8300000, guid: 96457e2be1126cc40a7cf4d8220b4aec, type: 3}
+    volume: 1
+  - id: bush
+    clip: {fileID: 8300000, guid: 34bcd0be6bd742a48ada81b39ca676d1, type: 3}
+    volume: 1
+  - id: win
+    clip: {fileID: 8300000, guid: cc81912182c46d040a6a86dbd0b4896b, type: 3}
+    volume: 1
+  - id: lose
+    clip: {fileID: 8300000, guid: e5abce6b60ac43947be246fa500fc4e6, type: 3}
     volume: 1
 --- !u!4 &876925792
 Transform:

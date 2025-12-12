@@ -134,6 +134,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Gate") && stats.canProceed)
         {
+            AudioManager.Instance.PlaySFX("win");
             LevelUIManager.Instance.ShowWin(); //to trigger win -canvas.
         }
     }
@@ -189,6 +190,10 @@ public class CharacterMovement : MonoBehaviour
         Vector3 cellCenter = levelTilemap.GetCellCenterWorld(cell);
         rb.position = cellCenter;
 
+        //Audio
+        AudioManager.Instance.PlaySFX("bush");
+
+        //Animator
         animator.SetBool("IsRunning", false);
         animator.SetTrigger("Crash");
     }

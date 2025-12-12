@@ -76,6 +76,7 @@ public class PlayerStats : MonoBehaviour
         hitPoints -= amount; //decrement HP.
         if (hitPoints <= 0)
         {
+            AudioManager.Instance.PlaySFX("lose");
             LevelUIManager.Instance.ShowLose(); //to show lose -canvas.
 
         }
