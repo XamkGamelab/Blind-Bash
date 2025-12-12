@@ -9,8 +9,10 @@ public class PlayerStats : MonoBehaviour
     public int score = 0;
 
     private GameObject ballParent;
-    private SpriteRenderer gateSpriteRenderer; //this simply for switching the sprites.
+    private GameObject gateSpriteRendererObject; //this simply for switching the sprites.
     public Sprite gateOpen;
+
+    private SpriteRenderer gateSpriteRenderer;
 
     public int ballAmount;
 
@@ -38,7 +40,10 @@ public class PlayerStats : MonoBehaviour
 
         while(gateSpriteRenderer == null)
         {
-            gateSpriteRenderer = FindObjectOfType<SpriteRenderer>();
+            gateSpriteRendererObject = GameObject.FindGameObjectWithTag("Gate");
+
+            gateSpriteRenderer = gateSpriteRendererObject.GetComponent<SpriteRenderer>();
+
             yield return null;
         }
     }
