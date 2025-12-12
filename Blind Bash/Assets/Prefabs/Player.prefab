@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
-  acceleration: 10
+  acceleration: 5
   speed: 0
 --- !u!114 &5041349905589906029
 MonoBehaviour:
@@ -65,7 +65,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 3
   score: 0
-  gateClosed: {fileID: 21300000, guid: ef7c6775683416542a1087e961114e2e, type: 3}
   gateOpen: {fileID: 21300000, guid: 34ad066b10aa8d64dba97b1f88dba7f7, type: 3}
   ballAmount: 0
   canProceed: 0
