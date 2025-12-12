@@ -85,6 +85,10 @@ public class PlayerStats : MonoBehaviour
             LevelUIManager.Instance.ShowLose(); //to show lose -canvas.
 
         }
+        else
+        {
+            AudioManager.Instance.PlaySFX("yelp");
+        }
     }
 
     public void ResetStats()

@@ -315,7 +315,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "James Gargette - Main menu\nPrzemys\u0142aw Sikorski - Gameplay\nDRAGON-STUDIO
     - Dog bark\nScreamStudio - Dog toy\nqubodup - Dog whine\nschademans - Bush rustle\nMATUSTRM
-    - Win sound\nfloraphonic - Lose sound"
+    - Win sound\nu_8g40a9z0la - Lose sound"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd393cc93dadfe44e9df413fa7b51419, type: 2}
   m_sharedMaterial: {fileID: 6290573585759991981, guid: cd393cc93dadfe44e9df413fa7b51419, type: 2}
@@ -1397,7 +1397,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cc81912182c46d040a6a86dbd0b4896b, type: 3}
     volume: 1
   - id: lose
-    clip: {fileID: 8300000, guid: e5abce6b60ac43947be246fa500fc4e6, type: 3}
+    clip: {fileID: 8300000, guid: bec71e0e1bfdcf645ad02a0d59b77f8a, type: 3}
     volume: 1
 --- !u!4 &876925792
 Transform:
